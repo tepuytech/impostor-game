@@ -49,6 +49,7 @@
                     </div>
 
                     <!-- Tiempo Límite -->
+                    @if(false)
                     <div class="mb-4">
                         <label class="flex items-center mb-3">
                             <input 
@@ -74,6 +75,7 @@
                             <p class="text-gray-400 text-sm mt-2">Tiempo para decir cada palabra</p>
                         @endif
                     </div>
+                    @endif
                 </div>
             @endif
 

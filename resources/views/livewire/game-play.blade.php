@@ -60,6 +60,25 @@
                 <div class="bg-gray-800 p-8 rounded-lg mb-6">
                     <h3 class="text-2xl font-bold mb-4">Di una palabra relacionada</h3>
                     
+                    <!-- Timer -->
+                    @if(false && $game->time_limit && $timeRemaining !== null)
+                        <div class="mb-6" wire:poll.1s="decrementTimer">
+                            <div class="text-center">
+                                <div class="inline-block bg-{{ $timeRemaining <= 5 ? 'red' : 'blue' }}-600 px-6 py-3 rounded-full">
+                                    <span class="text-3xl font-bold">⏱️ {{ $timeRemaining }}s</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Barra de progreso -->
+                            <div class="w-full bg-gray-700 rounded-full h-3 mt-4">
+                                <div 
+                                    class="bg-{{ $timeRemaining <= 5 ? 'red' : 'blue' }}-600 h-3 rounded-full transition-all duration-1000"
+                                    style="width: {{ ($timeRemaining / $game->time_limit) * 100 }}%"
+                                ></div>
+                            </div>
+                        </div>
+                    @endif
+                    
                     @if($player->is_alive)
                         @php
                             $hasSubmitted = $roundWords->where('player_id', $player->id)->isNotEmpty();
